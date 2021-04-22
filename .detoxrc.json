@@ -1,0 +1,42 @@
+{
+	"testRunner": "jest",
+	"runnerConfig": "e2e/config.json",
+	"artifacts": {
+		"plugins": {
+			"uiHierarchy": "enabled",
+			"screenshot": "failing"
+		}
+	},
+	"apps": {
+		"ios.prerelease": {
+			"type": "ios.app",
+			"binaryPath": "Build/Build/Products/Debug-iphonesimulator/DetoxKeyboards.app",
+			"build": "xcodebuild -project 'DetoxKeyboards.xcodeproj' -scheme 'DetoxKeyboards' -configuration 'Debug' -destination 'platform=iOS Simulator,OS=latest,name=iPhone 8' -derivedDataPath Build CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY='' CODE_SIGNING_ALLOWED=NO ONLY_ACTIVE_ARCH=YES DEBUG_INFORMATION_FORMAT=dwarf-with-dsym"
+		}
+	},
+	"devices": {
+		"simulator": {
+			"type": "ios.simulator",
+			"device": {
+				"type": "iPhone 8"
+			}
+		}
+	},
+	"configurations": {
+		"ios.pre.sim": {
+			"device": "simulator",
+			"app": "ios.prerelease"
+		},
+		"ios.none": {
+			"binaryPath": "ios",
+			"type": "ios.none",
+			"device": {
+				"type": "iPhone 8"
+			},
+			"session": {
+				"server": "ws://localhost:8099",
+				"sessionId": "au.com.sportsbet.DetoxKeyboards"
+			}
+		}
+	}
+}
